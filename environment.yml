@@ -11,3 +11,7 @@ dependencies:
     - scikit-learn
     - six
     - pydotplus
+    - tqdm
+    - pip
+    - pip:
+        - opensmile
