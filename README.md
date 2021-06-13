@@ -1,11 +1,11 @@
 # Aprendizaje Automatico - TP 2
 
-* [Enunciado](https://github.com/magistery-tps/aa-tp2/blob/main/docs/Enunciado.pdf)
-* [Notebook](https://github.com/magistery-tps/aa-tp1/blob/main/notebooks/tp2.ipynb)
+* [Enunciado](https://github.com/magistery-tps/aa-tp2/blob/master/docs/Enunciado.pdf)
 
-## Enlaces
+## Notebooks
 
-Completar!
+* [consultar-datos](https://github.com/magistery-tps/aa-tp2/blob/master/notebooks/consultar-datos.ipynb)
+
 
 ## Instalacion
 
