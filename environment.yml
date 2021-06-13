@@ -1,0 +1,13 @@
+name: aa-tp2
+channels:
+- anaconda
+- conda-forge
+- defaults
+dependencies:
+    - matplotlib
+    - seaborn
+    - pandas
+    - jupyterlab
+    - scikit-learn
+    - six
+    - pydotplus
