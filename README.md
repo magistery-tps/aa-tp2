@@ -4,7 +4,8 @@
 
 ## Notebooks
 
-* [consultar-datos](https://github.com/magistery-tps/aa-tp2/blob/master/notebooks/consultar-datos.ipynb)
+* [tp2](https://github.com/magistery-tps/aa-tp2/blob/master/notebooks/tp2.ipynb)
+* [Generar dataset](https://github.com/magistery-tps/aa-tp2/blob/master/notebooks/generar-dataset.ipynb)
 
 
 ## Instalacion
