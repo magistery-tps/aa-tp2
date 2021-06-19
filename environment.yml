@@ -12,6 +12,7 @@ dependencies:
     - six
     - pydotplus
     - tqdm
+    - librosa
     - pip
     - pip:
         - opensmile

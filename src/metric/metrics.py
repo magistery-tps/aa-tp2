@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix
+from sklearn.model_selection import cross_val_score
 import itertools
 
 def plot_confusion_matrix(y_true, y_pred, title='Confusion matrix', cmap=plt.cm.Blues):

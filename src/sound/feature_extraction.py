@@ -29,7 +29,7 @@ def get_functional_feats(file_path):
         feature_set   = opensmile.FeatureSet.eGeMAPSv02,
         feature_level = opensmile.FeatureLevel.Functionals,
     )
-    feats = smile.process_file(file_path, channel=0)
+    feats = smile.process_file(file_path)
     return feats.reset_index()
 
 def plot_feats(feats):

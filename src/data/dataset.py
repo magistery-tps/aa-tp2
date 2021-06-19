@@ -26,62 +26,73 @@ def download_audio_dataset(path, dataset_name):
     subprocess.run(["rm", filename, "-d", filename])
 
 class Dataset:
-    def __init__(self, path='.', dataset_name='speech'):
+    def __init__(
+        self, 
+        path='.', 
+        dataset_name='speech'
+    ):
         self.dataset_path = '{}/{}'.format(path, dataset_name)
         download_audio_dataset(self.dataset_path, dataset_name)
 
     def get_all(self, with_feats=True):
         '''
-        Usa el metodo de busqueda search_by para consultar todos lo ejemplos del dataset.
+        Devuelve todods los ejemplo del dataset.
         '''
-        return self.search_by('Actor_*', '*', with_feats)
+        return self.search_by_pattern('Actor_*/*', with_feats)
 
-    def search_by(self, actor_pattern, filename_pattern, with_feats=True):
+    def search_by_pattern(self, filename_pattern, with_feats=True):
         '''
-        Permite buscar ejemplos en el dataset buscando con un patro por artista y otro patro 
-        para el nombre del archivo. 
-        
+        Permite buscar ejemplos en el dataset usando un patro para el path del archivo.
+        ''' 
+        return self.search_by_paths(
+            paths      = glob.glob('{}/{}.wav'.format(self.dataset_path, filename_pattern)), 
+            with_feats = with_feats
+        )
+    
+    def search_by_paths(self, paths, with_feats=True, feature_extract_fn=get_functional_feats):
+        '''
         Devuelve una tabla donde cada ejemplo tiene como columnas todos los datos extraidos del
         nombre del archivo de audio y ademas todos los atributos extraido del audio con la 
         libreria opensmile.
         ''' 
-        search_path = '{}/{}/{}.wav'.format(self.dataset_path, actor_pattern, filename_pattern)
-        result_file_paths = glob.glob(search_path)
-
         examples = []        
-        for index in tqdm(range(len(result_file_paths))):
-            file_path = result_file_paths[index]
-
-            file_name_parts = self.__get_file_parts(file_path) 
- 
-            example = {
-                'actor'              : self.__get_actor_number_from(file_path),
-                'file_path'          : file_path,
-                'modality'           : file_name_parts[0],
-                'vocal_channel'      : file_name_parts[1],
-                'emotion'            : file_name_parts[2],
-                'emotional_intensity': file_name_parts[3],
-                'statement'          : file_name_parts[4],
-                'repetition'         : file_name_parts[5],
-                'actor'              : file_name_parts[6]
-            }
-            if with_feats:
-                self.__append_feats(example)
+        for index in tqdm(range(len(paths))):
             
-            examples.append(example)
+            try:
+                file_path = paths[index]
+
+                file_name_parts = self.__get_file_parts(file_path) 
+
+                example = {
+                    'actor'              : self.__get_actor_number_from(file_path),
+                    'file_path'          : file_path,
+                    'modality'           : file_name_parts[0],
+                    'vocal_channel'      : file_name_parts[1],
+                    'emotion'            : file_name_parts[2],
+                    'emotional_intensity': file_name_parts[3],
+                    'statement'          : file_name_parts[4],
+                    'repetition'         : file_name_parts[5],
+                    'actor'              : file_name_parts[6]
+                }
+                if with_feats:
+                    self.__append_feats(example, feature_extract_fn)
+
+                examples.append(example)
+            except:
+              print("Can't process {}!".format(file_path))
 
         return pd.DataFrame(examples)
 
     
     def __get_actor_number_from(self, path):
-        actor_part = path.replace(self.dataset_path, '') .split('/')[1]
+        actor_part = path.split('/')[-2]
         return int(actor_part.split('_')[1])
     
     def __get_file_parts(self, file_path):
         filename       = Path(file_path).stem
         return filename.split('-')
-    
-    def __append_feats(self, example):
-        feats = get_functional_feats(example['file_path'])            
+
+    def __append_feats(self, example, feature_extract_fn):
+        feats = feature_extract_fn(example['file_path'])
         for feat_col in feats.columns:
             example[feat_col] = feats[feat_col][0]
