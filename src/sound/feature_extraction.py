@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 # Funciones para extraccion de features de los archivos de audio:
 
-def get_lld_feats(file_path):
+def get_lld_feats(file_path, channel=0):
     '''
     Devuelve los atributos de bajo nivel (LLD) de un audio.
     '''
@@ -12,7 +12,7 @@ def get_lld_feats(file_path):
         feature_set   = opensmile.FeatureSet.eGeMAPSv02,
         feature_level = opensmile.FeatureLevel.LowLevelDescriptors,
     )
-    feats = smile.process_file(file_path, channel=0)
+    feats = smile.process_file(file_path, channel=channel)
     return feats.reset_index()
 
 

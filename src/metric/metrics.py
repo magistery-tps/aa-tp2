@@ -36,8 +36,5 @@ def show_score(model, X, y, cv, groups=None, scoring='accuracy', n_jobs=24):
     scores = cross_val_score(model, X, y, scoring=scoring, cv=cv, n_jobs=n_jobs, groups=groups)
     print('Accuracy: %.3f (%.3f)' % (np.mean(scores), np.std(scores)))
 
-def show_summary(rs, X, y):
-    model = rs.best_estimator_
-    print('Hiper parameters:', rs.best_params_)
-    print('Best score:', rs.best_score_)
+def show_summary(model, X, y):
     print('Accuracy: {:.3f} %'.format(model.score(X, y) * 100))
