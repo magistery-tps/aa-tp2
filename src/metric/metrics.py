@@ -5,6 +5,15 @@ from sklearn.metrics import confusion_matrix
 from sklearn.model_selection import cross_val_score
 import itertools
 
+def show_cv_score(model, X, y, cv, groups=None, scoring='accuracy', n_jobs=24):
+    scores = cross_val_score(model, X, y, scoring=scoring, cv=cv, n_jobs=n_jobs, groups=groups)
+    print('Accuracy: {:.3f} %'.format(np.mean(scores)))
+    return model
+
+def show_score(model, X, y):
+    print('Accuracy: {:.3f} %'.format(model.score(X, y) * 100))
+    return model
+
 def plot_confusion_matrix(y_true, y_pred, title='Confusion matrix', cmap=plt.cm.Blues):
     cm = confusion_matrix(y_true, y_pred)
     fig, ax = plt.subplots()
@@ -31,10 +40,3 @@ def plot_confusion_matrix(y_true, y_pred, title='Confusion matrix', cmap=plt.cm.
     plt.ylabel('True label')
     plt.xlabel('Predicted label')
     plt.show()
-
-def show_score(model, X, y, cv, groups=None, scoring='accuracy', n_jobs=24):
-    scores = cross_val_score(model, X, y, scoring=scoring, cv=cv, n_jobs=n_jobs, groups=groups)
-    print('Accuracy: %.3f (%.3f)' % (np.mean(scores), np.std(scores)))
-
-def show_summary(model, X, y):
-    print('Accuracy: {:.3f} %'.format(model.score(X, y) * 100))

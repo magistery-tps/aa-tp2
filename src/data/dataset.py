@@ -79,7 +79,8 @@ class Dataset:
 
                 examples.append(example)
             except:
-              print("Can't process {}!".format(file_path))
+                # print("Can't process {}!".format(file_path))
+                pass
 
         return pd.DataFrame(examples)
 
