@@ -13,7 +13,6 @@ dependencies:
     - pydotplus
     - tqdm
     - librosa
-    - joblib
     - pip
     - pip:
         - opensmile
