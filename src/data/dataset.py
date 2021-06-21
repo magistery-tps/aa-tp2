@@ -64,7 +64,6 @@ class Dataset:
                 file_name_parts = self.__get_file_parts(file_path) 
 
                 example = {
-                    'actor'              : self.__get_actor_number_from(file_path),
                     'file_path'          : file_path,
                     'modality'           : file_name_parts[0],
                     'vocal_channel'      : file_name_parts[1],
@@ -82,13 +81,8 @@ class Dataset:
                 # print("Can't process {}!".format(file_path))
                 pass
 
-        return pd.DataFrame(examples)
+        return pd.DataFrame(examples).dropna()
 
-    
-    def __get_actor_number_from(self, path):
-        actor_part = path.split('/')[-2]
-        return int(actor_part.split('_')[1])
-    
     def __get_file_parts(self, file_path):
         filename       = Path(file_path).stem
         return filename.split('-')

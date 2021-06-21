@@ -7,11 +7,11 @@ import itertools
 
 def show_cv_score(model, X, y, cv, groups=None, scoring='accuracy', n_jobs=24):
     scores = cross_val_score(model, X, y, scoring=scoring, cv=cv, n_jobs=n_jobs, groups=groups)
-    print('Accuracy: {:.3f} %'.format(np.mean(scores)))
+    print('Accuracy: {:.4f} %'.format(np.mean(scores * 100)))
     return model
 
 def show_score(model, X, y):
-    print('Accuracy: {:.3f} %'.format(model.score(X, y) * 100))
+    print('Accuracy: {:.4f} %'.format(model.score(X, y) * 100))
     return model
 
 def plot_confusion_matrix(y_true, y_pred, title='Confusion matrix', cmap=plt.cm.Blues):

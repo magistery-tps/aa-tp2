@@ -13,6 +13,7 @@ dependencies:
     - pydotplus
     - tqdm
     - librosa
+    - py-xgboost-gpu
     - pip
     - pip:
         - opensmile
