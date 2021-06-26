@@ -48,7 +48,7 @@ $ source ~/.bashrc  (o source ~/.zshrc)
 $ conda env create -f environment.yml
 ```
 
-**Nota**: Se peude [mamba](https://github.com/mamba-org/mamba) en vez de conda. Mamba es 100 veces mas rapido que conda.
+**Nota**: Se puede [mamba](https://github.com/mamba-org/mamba) en vez de conda. Mamba es 100 veces mas rapido que conda.
 
 ```bash
 $ conda install mamba
