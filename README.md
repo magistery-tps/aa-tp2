@@ -31,7 +31,7 @@ $ yay -S sox
 
 ```bash
 $ git clone https://github.com/magistery-tps/aa-tp2.git
-$ cd aa-tp1
+$ cd aa-tp2
 ```
 
 **Paso 2**: Instalar [anaconda](https://www.anaconda.com/products/individual) (Necesario para instalar las dependencias del proyecto).
