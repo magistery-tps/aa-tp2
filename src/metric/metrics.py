@@ -13,11 +13,14 @@ def show_cv_score(model, X, y, cv, groups=None, scoring='accuracy', n_jobs=24):
 def show_summary(model, X, y_true, labels=None):
     y_pred = model.predict(X)
 
-    print('Accuracy: {:.4f} %\n'.format(accuracy_score(y_true, y_pred) * 100))
+    show_score(y_true, y_pred)
     print('Classification Report:')
     print(classification_report(y_true, y_pred, target_names=labels))
     plot_confusion_matrix(y_true, y_pred, labels=labels)
     return model
+
+def show_score(y_true, y_pred):
+    print('Accuracy: {:.4f} %\n'.format(accuracy_score(y_true, y_pred) * 100))
 
 def plot_confusion_matrix(y_true, y_pred, title='Confusion matrix', cmap=plt.cm.Blues, labels=None):
     cm = confusion_matrix(y_true, y_pred)

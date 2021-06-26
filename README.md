@@ -8,6 +8,23 @@
 * [Generar dataset](https://github.com/magistery-tps/aa-tp2/blob/master/notebooks/generar-dataset.ipynb)
 
 
+
+## Pre-Requisitos
+
+Es necesario instalar la libreria sox.
+
+Debian/Ubuntu:
+
+```bash
+$ sudo apt-get install sox
+```
+
+Arch/Manjaro:
+
+```bash
+$ yay -S sox
+```
+
 ## Instalacion
 
 **Paso 1**: Descargar el repositorio.
