@@ -4,9 +4,9 @@
 
 ## Notebooks
 
-* [tp2](https://github.com/magistery-tps/aa-tp2/blob/master/notebooks/tp2.ipynb)
-* [Generar dataset](https://github.com/magistery-tps/aa-tp2/blob/master/notebooks/generar-dataset.ipynb)
-
+* [Resolución TP 2](https://github.com/magistery-tps/aa-tp2/blob/master/notebooks/resolucion-tp-2.ipynb)
+* [Generacion de Dataset](https://github.com/magistery-tps/aa-tp2/blob/master/notebooks/generacion-dataset.ipynb)
+* [KFold split manual sin usar CV](https://github.com/magistery-tps/aa-tp2/blob/master/notebooks/extras/kfold.ipynb)
 
 
 ## Pre-Requisitos
