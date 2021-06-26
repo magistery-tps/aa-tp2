@@ -61,7 +61,7 @@ $ mamba env create -f environment.yml
 
 ## Actualizar dependencias
 
-Si agregamos nuevas dependencias en `environment.yml` para instalarlas es necesario correr el siguiente comando:
+Si agregamos nuevas dependencias en `environment.yml` es necesario correr el siguiente comando para instalarlas:
 
 ```bash
 $ conda env update -f environment.yml
