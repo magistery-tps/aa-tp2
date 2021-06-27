@@ -14,10 +14,19 @@ def show_summary(model, X, y_true, labels=None):
     y_pred = model.predict(X)
 
     show_score(y_true, y_pred)
+
     print('Classification Report:')
-    print(classification_report(y_true, y_pred, target_names=labels))
+    value_labels = [labels[r] for r in y_true_pred_values(y_true, y_pred)]
+    print(classification_report(y_true, y_pred, target_names=value_labels))
+    
     plot_confusion_matrix(y_true, y_pred, labels=labels)
+
     return model
+
+
+def y_true_pred_values(y_true, y_pred):
+    true_values  = y_true[y_true.columns[0]].unique()            
+    return np.sort(np.unique(np.concatenate((true_values, np.unique(y_pred)))))
 
 def show_score(y_true, y_pred):
     print('Accuracy: {:.4f} %\n'.format(accuracy_score(y_true, y_pred) * 100))
@@ -32,23 +41,23 @@ def plot_confusion_matrix(y_true, y_pred, title='Confusion matrix', cmap=plt.cm.
     
     ax = plt.gca()
     
-    classes_count = y_true.value_counts().index.values    
-    tick_marks = np.arange(len(classes_count))
-    plt.xticks(tick_marks, rotation=45)
-        
-    if labels:
-        ax.set_xticklabels(labels)
-        ax.set_yticklabels(labels)
-    else:
-        ax.set_xticklabels((ax.get_xticks() +1).astype(str))
-
-    plt.yticks(tick_marks)
-
     thresh = cm.max() / 2.
     for row, col in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
         value      = cm[row, col]
         text_color = "white" if value > thresh else "black"
         plt.text(row, col, value, horizontalalignment="center", color=text_color)
+
+    classes_count = y_true.value_counts().index.values    
+    tick_marks = np.arange(len(classes_count))
+    plt.xticks(tick_marks, rotation=45)
+    plt.yticks(tick_marks)
+
+    if labels:
+        used_labels = [labels[r] for r in y_true_pred_values(y_true, y_pred)]
+        ax.set_yticklabels(used_labels)
+        ax.set_xticklabels(used_labels)
+    else:
+        ax.set_xticklabels((ax.get_xticks() +1).astype(str))
 
     plt.tight_layout()
     plt.ylabel('True label')
