@@ -73,7 +73,7 @@ $ conda env update -f environment.yml
 **Paso 1**: Activamos el entorno donde se encuentran instaladas las dependencias del proyecto.
 
 ```bash
-$ activate aa-tp1
+$ conda activate aa-tp1
 ```
 
 **Paso 2**: Sobre el directorio del proyecto levantamos jupyter lab.
