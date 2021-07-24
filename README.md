@@ -1,6 +1,7 @@
 # Aprendizaje Automatico - TP 2
 
 * [Enunciado](https://github.com/magistery-tps/aa-tp2/blob/master/docs/Enunciado.pdf)
+* [Informe](https://github.com/magistery-tps/aa-tp2/blob/master/docs/Aprendizaje%20Automatico%20-%20TP%20N%C2%B02.pdf)
 
 ## Notebooks
 
